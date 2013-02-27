@@ -35,15 +35,18 @@ class GoogleMapsWidget(widgets.HiddenInput):
 										'lng': '%(center_lng)s',
 										'map_elem': '#%(map_id)s',
 										'delete_elem': '#%(delete_id)s',
+										'search_elem': '#%(search_id)s',
 								});
 							});
 						</script>
 					</div>
 					<p><a id="%(delete_id)s" href="javascript:void(0)">Remove Marker</a></p>
+					<p><a id="%(search_id)s" href="javascript:void(0)">Search Address</a></p>
 					<p class="help">Double click to zoom in and center on a location. Right click to set the marker on a position. You can also drag and drop the marker.</p>
 				""" % { 
 						'field_id': attrs['id'],
 						'delete_id': 'map_delete_%s'%attrs['id'],
+						'search_id': 'map_search_%s'%attrs['id'],
 						'map_id': 'map_%s'%attrs['id'],
 						'attrs': flatatt(final_attrs),
 						'height': gmap_settings.HEIGHT,

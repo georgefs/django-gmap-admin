@@ -7,6 +7,7 @@ django.jQuery(function($){
 			'lng':'-6.24',
 			'map_elem' : '#id_map',
 			'delete_elem' : '#id_delete',
+            'search_elem' : '#id_search',
 		};
 		
 		var options = $.extend(defaults, options);
@@ -59,8 +60,20 @@ django.jQuery(function($){
     		    marker.setPosition(latlng)
     		}
 		};	
+
+        var goto_address = function(){
+            address=prompt("請輸入地址", "");
+            geocoder.geocode( { 'address': address}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.fitBounds(results[0].geometry.bounds);
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        };
 		
 		latlng = new google.maps.LatLng(options.lat,options.lng);
+        geocoder = new google.maps.Geocoder();
         map = new google.maps.Map(document.getElementById($(options.map_elem).attr('id')),{
 			zoom: options.zoom,
 			center : latlng,
@@ -82,5 +95,8 @@ django.jQuery(function($){
 			}
 		});
 		
+		$(options.search_elem).click(function(){
+            goto_address()
+		});
 	};
 });
