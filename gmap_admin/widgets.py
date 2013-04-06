@@ -10,7 +10,8 @@ class GoogleMapsWidget(widgets.HiddenInput):
 	
 	class Media:
 		js = [
-			'<script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>',
+			'/static/admin/js/jquery.min.js',
+            '/static/admin/js/jquery.init.js',
 			'http://maps.google.com/maps/api/js?sensor=false',
 			'gmap_admin/js/google-maps-admin.js',
 			]
